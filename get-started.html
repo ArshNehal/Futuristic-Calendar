@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Get Started - Futuristic Calendar</title>
+ 
+  <link rel="shortcut icon" href="ChatGPT Image Jun 4, 2025, 10_42_38 PM.png" type="image/png">
+
+ <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f0fdfa 100%);
+      color: #222;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s, color 0.3s;
+    }
+    .container {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 32px rgba(60,60,120,0.15);
+      padding: 2.5rem 2rem;
+      max-width: 400px;
+      text-align: center;
+      position: relative;
+      animation: slideIn 0.6s ease-out;
+    }
+    h1 {
+      margin-top: 0;
+      color: #3b82f6;
+      font-size: 2rem;
+      animation: fadeIn 0.8s ease-out;
+    }
+    ul {
+      text-align: left;
+      margin: 1.5rem 0;
+      padding-left: 1.2rem;
+    }
+    li {
+      margin-bottom: 0.7rem;
+      opacity: 0;
+      animation: fadeIn 0.5s ease-out forwards;
+    }
+    li:nth-child(1) { animation-delay: 0.2s; }
+    li:nth-child(2) { animation-delay: 0.4s; }
+    li:nth-child(3) { animation-delay: 0.6s; }
+    li:nth-child(4) { animation-delay: 0.8s; }
+    .start-btn {
+      display: inline-block;
+      background: #3b82f6;
+      color: #fff;
+      padding: 0.7rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+      animation: fadeIn 1s ease-out;
+    }
+    .start-btn:hover {
+      background: #2563eb;
+      animation: pulse 1s infinite;
+    }
+    .calendar-footer {
+      margin-top: 2rem;
+      font-size: 0.95rem;
+      color: #888;
+    }
+    body.dark-mode .calendar-footer {
+      color: #bbb;
+    }
+    /* Dark mode styles */
+    body.dark-mode {
+      background: linear-gradient(135deg, #18181b 0%, #22223b 100%);
+      color: #f3f4f6;
+    }
+    body.dark-mode .container {
+      background: #232946;
+      color: #f3f4f6;
+      box-shadow: 0 8px 32px rgba(20,20,40,0.25);
+    }
+    body.dark-mode .start-btn {
+      background: #6366f1;
+      color: #fff;
+    }
+    body.dark-mode .start-btn:hover {
+      background: #4338ca;
+    }
+    body.dark-mode .footer {
+      color: #bbb;
+    }
+    /* Theme toggle button */
+    #theme-toggle-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      font-size: 1.5rem;
+      padding: 0.3rem;
+      z-index: 2;
+    }
+    .theme-icon {
+      vertical-align: middle;
+      font-size: 1.5rem;
+      transition: opacity 0.2s, transform 0.3s ease-in-out;
+    }
+    .hidden {
+      display: none;
+    }
+
+    /* Animation keyframes */
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Smooth theme transition */
+    body {
+      transition: background 0.4s ease-in-out, color 0.3s ease-in-out;
+    }
+
+    .container {
+      transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    #theme-toggle-btn:hover .theme-icon {
+      transform: rotate(360deg);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="theme-toggle-btn" title="Toggle dark mode">
+      <span id="theme-icon-sun" class="theme-icon hidden">&#9728;</span>
+      <span id="theme-icon-moon" class="theme-icon">&#9790;</span>
+    </button>
+    <h1>Welcome to Your Futuristic Calendar!</h1>
+    <p>Get organized and plan ahead with ease. Here’s how to get started:</p>
+    <ul>
+      <li>Navigate months using the <b>arrow buttons</b>.</li>
+      <li><b>Click a date</b> to select it and view events.</li>
+      <li>Tap the <b>month/year</b> to jump to any date.</li>
+      <li>Switch between <b>light and dark mode</b> with the theme toggle.</li>
+    </ul>
+    <a href="index.html" class="start-btn">Start Using Calendar</a>
+    <div class="calendar-footer" id="calendar-footer-message">
+      Futuristic Calendar Interface v1.0
+    </div>
+    <p class="calendar-footer">by Arsh Nehal</p>
+  </div>
+  <script>
+    const themeToggleBtn = document.getElementById('theme-toggle-btn');
+    const themeIconSun = document.getElementById('theme-icon-sun');
+    const themeIconMoon = document.getElementById('theme-icon-moon');
+
+    function setInitialTheme() {
+      const savedTheme = localStorage.getItem('calendar-theme');
+      if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        themeIconSun.classList.remove('hidden');
+        themeIconMoon.classList.add('hidden');
+      } else {
+        document.body.classList.remove('dark-mode');
+        themeIconSun.classList.add('hidden');
+        themeIconMoon.classList.remove('hidden');
+      }
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
+      const isDarkMode = document.body.classList.contains('dark-mode');
+      localStorage.setItem('calendar-theme', isDarkMode ? 'dark' : 'light');
+      themeIconSun.classList.toggle('hidden', !isDarkMode);
+      themeIconMoon.classList.toggle('hidden', isDarkMode);
+    }
+
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    setInitialTheme();
+  </script>
+</body>
+</html>
